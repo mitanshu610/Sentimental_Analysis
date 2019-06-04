@@ -1,3 +1,4 @@
+#demo of textblob lib
 from textblob import TextBlob
 my_demo_text = TextBlob("Bad Boy.")
 my_demo_text2 = TextBlob("Very Good Boy.")
