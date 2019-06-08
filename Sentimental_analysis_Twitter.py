@@ -1,17 +1,44 @@
 #Sentimental Analysis
 import tweepy
-
-Consumer_key = "ZLKMoViTPxtuUqhtMa8urHmt3"
-Consumer_secret = "nN9Rk1YPERYKdkcGzXcSEL04MUE3Qgv87RerTJZ7rVnYh1AGTx"
-Token_key = "908703613345685509-Mecdzih111NKaNwbp6OPdPCgiu3p0Yo"
-Token_secret = "cNHIId7zFQ8f20OokKu89EaTxlgr6WlOykS8fwU196Qht"
+from textblob import TextBlob
+import matplotlib.pyplot as plt
+Consumer_key =" "
+Consumer_secret = " "
+Token_key = " "
+Token_secret = " "
+#Twitter authentication
 api = tweepy.OAuthHandler(consumer_key=Consumer_key, consumer_secret=Consumer_secret)
 api.set_access_token(key=Token_key , secret=Token_secret)
 tweets = tweepy.API(api)
 
+
+#function to extract tweets from the given keyword
 def get_tweets():
-    all_tweets = tweets.search('BTS')
+    all_tweets = tweets.search('')
     return all_tweets
 
+count = 0
+positivity = 0
+negativity = 0
+neutral_tweets = 0
 for tweet in get_tweets():
-    print(tweet.text)
+    my_SA = TextBlob(tweet.text)
+    count += 1
+    if my_SA.sentiment[0] > 0.0:
+        positivity += 1
+    elif my_SA.sentiment[0] < 0.0:
+        negativity += 1
+    elif my_SA.sentiment[0] == 0:
+        neutral_tweets += 1
+
+perc_neutral = neutral_tweets/count
+perc_positive = positivity/count
+perc_negative = negativity/count
+
+print(perc_neutral)
+print(perc_positive)
+print(perc_negative)
+#graph for positive and negative tweets 
+labels = 'Positive', 'Neutral', 'Negative'
+sizes = (perc_positive,perc_neutral,perc_negative)
+plt.show(plt.pie(sizes,explode=(0.1,0,0),labels=labels)) #builds a graph on the basis of the data we obtained from tweets 
