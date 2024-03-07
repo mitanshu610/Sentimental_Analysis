@@ -10,6 +10,7 @@ Token_secret = " "
 api = tweepy.OAuthHandler(consumer_key=Consumer_key, consumer_secret=Consumer_secret)
 api.set_access_token(key=Token_key , secret=Token_secret)
 tweets = tweepy.API(api)
+print("Hello World")
 
 
 #function to extract tweets from the given keyword
