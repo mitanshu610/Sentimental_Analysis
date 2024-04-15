@@ -35,9 +35,9 @@ perc_neutral = neutral_tweets/count
 perc_positive = positivity/count
 perc_negative = negativity/count
 
-# print(perc_neutral)
-# print(perc_positive)
-# print(perc_negative)
+print(perc_neutral)
+print(perc_positive)
+print(perc_negative)
 #graph for positive and negative tweets 
 labels = 'Positive', 'Neutral', 'Negative'
 sizes = (perc_positive,perc_neutral,perc_negative)
